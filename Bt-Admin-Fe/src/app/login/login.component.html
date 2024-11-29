@@ -1,0 +1,33 @@
+<div class="loginbody">
+  <div class="main">
+    <div class="login">
+      <form *ngIf="isLoginForm; else forgotPasswordForm">
+        <label for="chk" aria-hidden="true">Login</label>
+        <input type="email" name="email" placeholder="Email" required [(ngModel)]="credsObj.email">
+        <input type="password" name="pswd" placeholder="Password" required [(ngModel)]="credsObj.pass">
+        <div class="button-container">
+          <button type="button" (click)="onLogin()">Login</button>
+          <button type="button" class="forgot-password-button" (click)="onForgotPassword()">Forgot Password?</button>
+        </div>
+      </form>
+      <ng-template #forgotPasswordForm>
+        <label for="chk" aria-hidden="true"><h5>Forgot Password</h5></label>
+        <input type="email" name="email" placeholder="Email" required [(ngModel)]="credsObj.email">
+        <div *ngIf="showOtpInput">
+          <input type="text" name="otp" placeholder="Enter OTP" required [(ngModel)]="credsObj.otp">
+        </div>
+        <div *ngIf="iscreatePassword">
+          <input type="password" name="otp" placeholder="enter password" required [(ngModel)]="credsObj.pass">
+          <input type="password" name="otp" placeholder="confirm password" required [(ngModel)]="credsObj.cpass">
+        </div>
+        <div class="button-container">
+          <button type="button" *ngIf="!showOtpInput && !iscreatePassword" (click)="sendOtp()">Send OTP</button>
+          <button type="button" *ngIf="showOtpInput && !iscreatePassword" (click)="verifyOtp()">Verify OTP</button>
+          <button type="button" *ngIf="!showOtpInput && iscreatePassword" (click)="createPassword()">submit</button>
+          <button type="button" class="forgot-password-button" (click)="toggleForm()">Back to Login</button>
+        </div>
+      </ng-template>
+      <div *ngIf="message" class="message">{{ message }}</div>
+    </div>
+  </div>
+</div>

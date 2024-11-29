@@ -1,0 +1,30 @@
+   <div class="project-list-container">
+    <label>
+      <input type="checkbox" [(ngModel)]="showAssignedProject" (change)="applyFilter()" /> Only Show Your Assigned Projects
+    </label>
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Domain</th>
+          <th>Country</th>
+          <th>startDate</th>
+          <th>loginTime</th>
+          <th>logoutTime</th>
+          <th>Assigned</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of filteredProjects">
+          <td>{{ project.name }}</td>
+          <td>{{ project.domain }}</td>
+          <td>{{ project.country }}</td>
+          <td>{{ project.startDate }}</td>
+          <td>{{ project.loginTime }}</td>
+          <td>{{ project.logoutTime }}</td>
+          <td>{{ project.userName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,45 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="tree">
+      <ul>
+        <li>
+          <i class="bi bi-person icon-large aa iimg" [ngClass]="hasAnyRole(['CEO']) ? roleClass : ''"><span>CEO</span></i>
+          <ul>
+            <li>
+              <i [ngClass]="hasAnyRole(['CTO']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span>CTO</span></i>
+              <ul>
+                <li>
+                  <i [ngClass]="hasAnyRole(['BA']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span>BA</span></i>
+                </li>
+                <li>
+                  <i [ngClass]="hasAnyRole(['HR']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span>HR</span></i>
+                </li>
+                <li>
+                  <i [ngClass]="hasAnyRole(['Manager']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span>Manager</span></i>
+                  <ul>
+                    <li>
+                      <i [ngClass]="hasAnyRole(['Developer']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span> Developer </span></i>
+                    </li>
+                    <li>
+                      <i [ngClass]="hasAnyRole(['DevOps']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span> DevOps </span></i>
+                     </li>
+                     <li>
+                      <i class="bi bi-person icon-large aa iimg"><span> QA </span></i>
+                     </li>
+                  </ul>
+                </li>
+                <li>
+                  <i [ngClass]="hasAnyRole(['Admin']) ? roleClass : ''" class="bi bi-person icon-large aa iimg"><span>Admin</span></i>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+</div>
+</div>
+</div>
+
+

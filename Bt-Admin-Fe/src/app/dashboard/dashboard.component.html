@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <div class="background-blur"></div>
+  <div class="content-wrapper">
+    <div class="header">
+      <h1>Bluetris Technologies organization</h1>
+    </div>
+    <div class="content">
+      <div class="box">
+        <div class="box-inner">
+          <h2>Employee</h2>
+          <p>
+            {{totalUser}}+
+          </p>
+        </div>
+        <div class="box-inner">
+          <h2>Projects</h2>
+          <p>
+            {{totalProject}}+
+          </p>
+        </div>
+        <div class="box-inner">
+          <h2>Role</h2>
+          <p>
+            {{userRole}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="submit-button"  (click)="manage()" [disabled]="!isAdmin">Manage system</button>
+    <div class="footer">
+      <h4>©2024 Bluetris. All Rights Reserved.</h4>
+    </div>
+  </div>
+</div>

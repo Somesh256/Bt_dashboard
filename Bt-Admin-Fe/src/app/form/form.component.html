@@ -1,0 +1,130 @@
+<div class="loginbody">
+  <div class="main">
+
+    <!-- Employee -->
+     <div class="login" *ngIf="isActionKey === 'EMP' && isActionValue==='insert'">
+      <form *ngIf="!isRole; else role">
+        <label for="chk" aria-hidden="true">Add Employee</label>
+        <input type="text" name="name" placeholder="Name" required [(ngModel)]="credsObj.name">
+        <input type="text" name="qualification" placeholder="Qualification" required [(ngModel)]="credsObj.edu">
+        <input type="email" name="email" placeholder="Email" required [(ngModel)]="credsObj.email">
+        <input type="password" name="pswd" placeholder="Password" required [(ngModel)]="credsObj.pass">
+        <input type="password" name="cpswd" placeholder="CPassword" required [(ngModel)]="credsObj.cpass">
+        <input type="number" name="mobile" placeholder="Mobile" required [(ngModel)]="credsObj.mobile">
+        <input type="text" name="address" placeholder="Address" required [(ngModel)]="credsObj.address">
+        <div class="button-container">
+          <button type="button" (click)="onContinue('EMP', 'firstPhase')">Continue</button>
+          <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+        </div>
+      </form>
+      <ng-template #role>
+        <mat-form-field appearance="fill" class="custom-mat-form-field"
+          *ngIf="(!isOtp && isverifyOtp && !isSubmit) || (isOtp && !isverifyOtp) || (isRole && !isOtp && !isverifyOtp && !isSubmit)">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="credsObj.role" name="role" multiple (selectionChange)="roleSelectionChange($event)">
+            <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="isOtp || isverifyOtp">
+          <input type="email" [value]="credsObj.email" readonly placeholder="Email">
+        </div>
+        <div *ngIf="!isOtp && isverifyOtp ">
+          <input type="text" name="otp" placeholder="Enter OTP" required [(ngModel)]="credsObj.otp">
+        </div>
+        <div *ngIf="!isOtp && !isverifyOtp && isSubmit" class="submit-message">
+          <p>Click On Submit For Add A New Employee</p>
+        </div>
+        <button type="button" (click)="onContinue('EMP','secondPhase')"
+          *ngIf="isRole && !isOtp && !isverifyOtp && !isSubmit">Continue</button>
+        <button type="button" *ngIf="isOtp && !isverifyOtp" (click)="sendOtp()">SendOtp</button>
+        <button type="button" *ngIf="!isOtp && isverifyOtp && !isSubmit" (click)="verifyOtp()">Verify Otp</button>
+        <button type="button" *ngIf="!isOtp && !isverifyOtp && isSubmit"
+          (click)="submit('EMP','insert')">Submit</button>
+        <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+      </ng-template>
+    </div>
+
+    <div class="login" *ngIf="isActionKey === 'EMP' && isActionValue==='update'">
+      <form *ngIf="!isRole; else role">
+        <label for="chk" aria-hidden="true">Update Employee</label>
+        <input type="text" name="qualification" placeholder="Qualification" required [(ngModel)]="credsObj.edu">
+        <input type="text" name="address" placeholder="Address" required [(ngModel)]="credsObj.address">
+        <input type="number" name="mobile" placeholder="Mobile" required [(ngModel)]="credsObj.mobile">
+        <div class="button-container">
+          <button type="button" (click)="onContinue('EMP', 'firstPhase')">Continue</button>
+          <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+        </div>
+      </form>
+      <ng-template #role>
+        <mat-form-field appearance="fill" class="custom-mat-form-field"
+          *ngIf="(!isOtp && isverifyOtp && !isSubmit) || (isOtp && !isverifyOtp) || (isRole && !isOtp && !isverifyOtp && !isSubmit)">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="credsObj.role" name="role" multiple (selectionChange)="roleSelectionChange($event)">
+            <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="!isOtp && !isverifyOtp && isSubmit" class="submit-message">
+          <p>Click On Submit For update Employee details</p>
+        </div>
+        <button type="button" (click)="submit('EMP','update')">Submit</button>
+        <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+      </ng-template>
+    </div>
+
+    <!-- Project -->
+    <div class="login" *ngIf="isActionKey === 'PROJ' && isActionValue === 'insert'">
+      <form *ngIf="!isStartDate; else startDate">
+        <label for="chk" aria-hidden="true">Add Project</label>
+        <input type="text" name="name" placeholder="Name" required [(ngModel)]="credsObj.name">
+        <input type="text" name="country" placeholder="Country" required [(ngModel)]="credsObj.country">
+        <input type="text" name="domain" placeholder="Domain" required [(ngModel)]="credsObj.domain">
+        <input type="text" name="login time" placeholder="LogIn Time" required [(ngModel)]="credsObj.logInTime">
+        <input type="text" name="logout time" placeholder="Logout Time" required [(ngModel)]="credsObj.logOutTime">
+        <div class="button-container">
+          <button type="button" (click)="onContinue('PROJ','firstPhase')">continue</button>
+          <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+        </div>
+      </form>
+      <ng-template #startDate>
+        <mat-form-field appearance="fill" *ngIf="isStartDate && !isProjectDate">
+          <mat-label>Start Date</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" required [(ngModel)]="credsObj.startDate"
+            name="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="user-list-container" *ngIf="isStartDate && isProjectDate">
+          <button (click)="fetchUsers()">Show Users</button>
+          <ul *ngIf="userList.length > 0">
+            <li *ngFor="let user of userList" class="user-item" [class.selected]="user === selectedUser"
+              (click)="selectUser(user._id)">
+              {{ user.name }}
+            </li>
+          </ul>
+        </div>
+        <button type="button" (click)="projectData()" *ngIf="isStartDate && !isProjectDate">Continue</button>
+        <button type="button" (click)="submit('PROJ','insert')" *ngIf="isStartDate && isProjectDate">Submit</button>
+        <button type="button" (click)="toggleForm()">Back to Deshboard</button>
+      </ng-template>
+    </div>
+
+    <div *ngIf="isActionKey === 'PROJ' && isActionValue === 'update'">
+      <div class="user-list-container">
+        <button (click)="fetchUsers()">Show Users</button>
+        <ul *ngIf="userList.length > 0">
+          <li *ngFor="let user of userList" class="user-item" [class.selected]="user === selectedUser"
+            (click)="selectUser(user._id)">
+            {{ user.name }}
+          </li>
+        </ul>
+      </div>
+      <div class="button-container">
+        <button type="button" (click)="submit('PROJ','update')">Submit</button>
+        <button type="button" (click)="toggleForm()">Back to Dashboard</button>
+      </div>
+    </div>
+    <div *ngIf="message" class="message">{{ message }}</div>
+    
+    
+  </div>
+</div>

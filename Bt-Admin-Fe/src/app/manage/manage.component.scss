@@ -1,0 +1,110 @@
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.spacer {
+  margin: 0 20px;
+}
+
+.project-list-container {
+  margin: 20px;
+  position: relative;
+  width: 90%;
+  max-height: 500px; /* Set the height of the container */
+}
+
+.project-table {
+  width: 105%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  table-layout: fixed;
+}
+
+.project-table thead, .project-table th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+}
+
+.table-scroll {
+  overflow-y: auto;
+  max-height: 400px; /* Adjust as needed to fit your design */
+}
+
+.project-table th, .project-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.project-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.project-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.project-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.project-table tbody {
+  display: block;
+}
+
+.project-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.action-button {
+  margin-right: 10px;
+}
+
+.addEmp-button {
+  display: block;
+  margin: 10px 0; /* Add some margin to position above the table */
+}
+
+.message {
+	/* Red background color for error messages */
+   color: #721c24; /* Dark red text color */
+   padding: 10px; /* Add padding for better readability */
+   border: 1px solid #f5c6cb; /* Red border for error messages */
+   border-radius: 5px; /* Rounded corners */
+   text-align: center; /* Center align text */
+   margin-top: 10px; /* Add some space between the message and other elements */
+   background-color: #f5c6cb;
+ }
+
+ .submit-message {
+	text-align: center;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-message p {
+	font-size: 18px;
+	color: #333;
+	margin: 0;
+	padding: 10px 0;
+	font-weight: 600;
+}

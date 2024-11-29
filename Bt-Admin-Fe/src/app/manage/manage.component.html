@@ -1,0 +1,80 @@
+<div class="button-container">
+  <button class="button" (click)="fetchEmployeeData()">Employee</button>
+  <div class="spacer"></div>
+  <button class="button" (click)="fetchProjectData()">Project</button>
+</div>
+
+<div *ngIf="employeeData.length > 0">
+  <div class="project-list-container">
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Qualification</th>
+          <th>Role</th>
+          <th>email</th>
+          <th>mobileNumber</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    </table>
+    <div class="table-scroll">
+      <table class="project-table">
+        <tbody>
+          <tr *ngFor="let employee of employeeData">
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.qualification }}</td>
+            <td>{{ employee.role }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.mobileNumber }}</td>
+            <td>
+              <button class="action-button" (click)="rederectForm('EMP','update',employee._id)">Edit</button>
+              <button class="action-button" (click)="dropEntity(employee._id, 'user')">Delete</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="message" class="message">{{ message }}</div>
+    <button class="addEmp-button" (click)="rederectForm('EMP','insert')">ADD Employee</button>
+  </div>
+</div>
+
+<div *ngIf="projectData.length > 0">
+  <div class="project-list-container">
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Domain</th>
+          <th>Country</th>
+          <th>loginTime</th>
+          <th>logoutTime</th>
+          <th>Assigned</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+    </table>
+    <div class="table-scroll">
+      <table class="project-table">
+        <tbody>
+          <tr *ngFor="let project of projectData">
+            <td>{{ project.name }}</td>
+            <td>{{ project.domain }}</td>
+            <td>{{ project.country }}</td>
+            <td>{{ project.loginTime }}</td>
+            <td>{{ project.logoutTime }}</td>
+            <td>{{ project.userName }}</td>
+            <td>
+              <button class="action-button" (click)="rederectForm('PROJ','update',project._id)">Edit</button>
+              <button class="action-button" (click)="dropEntity(project._id, 'project')">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="message" class="message">{{ message }}</div>
+    <button class="addEmp-button" (click)="rederectForm('PROJ','insert')">ADD Project</button>
+  </div>
+</div>
